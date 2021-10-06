@@ -1,12 +1,13 @@
-import logo from './logo.svg';
 import './App.css';
+import Layout from 'components/UI/Layout.js';
 
 function App() {
-  return (
-    <div>
-      <h1>Hello world</h1>
-    </div>
-  );
+    return ( 
+        
+        <Layout >
+          <h1 > Hello world </h1> 
+        </Layout>
+    );
 }
 
 export default App;
