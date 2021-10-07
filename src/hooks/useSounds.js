@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import * as Tone from "tone";
 
 import kick from "assets/sounds/Kick.wav";
@@ -7,6 +7,12 @@ import perc from "assets/sounds/Perc1.wav";
 import snare from "assets/sounds/Snare1.wav";
 
 export default function useSounds() {
+
+    const [isKickPlayed, isKickChanged] = useState();
+    const [isCHHPlayed, isCHHChanged] = useState();
+    const [isPercPlayed, isPercChanged] = useState();
+    const [isSnarePlayed, isSnareChanged] = useState();
+
     const mySampler = useRef(null);
     useEffect(() => {
         const sampler = new Tone.Sampler({
@@ -29,15 +35,23 @@ export default function useSounds() {
         switch (key) {
             case "a":
                 soundPlay("C4");
+                isKickChanged(true);
+                window.setTimeout(() => { isKickChanged(false) }, 300);
                 break;
             case "z":
                 soundPlay("D#4");
+                isCHHChanged(true);
+                window.setTimeout(() => { isCHHChanged(false) }, 300);
                 break;
             case "e":
                 soundPlay("F#4");
+                isPercChanged(true);
+                window.setTimeout(() => { isPercChanged(false) }, 300);
                 break;
             case "r":
                 soundPlay("A4");
+                isSnareChanged(true);
+                window.setTimeout(() => { isSnareChanged(false) }, 300);
                 break;
             default:
                 break;
@@ -49,10 +63,10 @@ export default function useSounds() {
         return () => { window.removeEventListener("keydown", handleKeyDown) };
     });
     const buttonList = [
-        { soundPlay: () => soundPlay("C4"), },
-        { soundPlay: () => soundPlay("D#4"), },
-        { soundPlay: () => soundPlay("F#4"), },
-        { soundPlay: () => soundPlay("A4"), },
+        { soundPlay: () => soundPlay("C4"), isPlayed: isKickPlayed, },
+        { soundPlay: () => soundPlay("D#4"), isPlayed: isCHHPlayed, },
+        { soundPlay: () => soundPlay("F#4"), isPlayed: isPercPlayed, },
+        { soundPlay: () => soundPlay("A4"), isPlayed: isSnarePlayed, },
     ];
     return { buttonList };
 }
