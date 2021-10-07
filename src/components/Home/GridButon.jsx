@@ -52,6 +52,11 @@ const Wrapper = styled.div`
     & label{
         position: absolute;
         right: 12px;
-        top: 12px; 
+        top: 12px;
+        font-size: 24px;
+        @media (max-width: 330px){
+            font-size: 18px;
     }
+    }
+
 `;
