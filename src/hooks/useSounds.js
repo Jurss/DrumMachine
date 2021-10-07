@@ -62,11 +62,37 @@ export default function useSounds() {
 
         return () => { window.removeEventListener("keydown", handleKeyDown) };
     });
-    const buttonList = [
-        { soundPlay: () => soundPlay("C4"), isPlayed: isKickPlayed, },
-        { soundPlay: () => soundPlay("D#4"), isPlayed: isCHHPlayed, },
-        { soundPlay: () => soundPlay("F#4"), isPlayed: isPercPlayed, },
-        { soundPlay: () => soundPlay("A4"), isPlayed: isSnarePlayed, },
+
+    function handleSoundChange(note, file) {
+        let fileURL = URL.createObjectURL(file);
+        let buffer = new Tone.Buffer(fileURL);
+        mySampler.current.add(note, buffer, () => alert('Sound Succeffully Added !'))
+    };
+
+    const buttonList = [{
+            soundPlay: () => soundPlay("C4"),
+            isPlayed: isKickPlayed,
+            id: "kick",
+            handleSoundChange: (e) => handleSoundChange("C4", e.target.files[0]),
+        },
+        {
+            soundPlay: () => soundPlay("D#4"),
+            isPlayed: isCHHPlayed,
+            id: "CHH",
+            handleSoundChange: (e) => handleSoundChange("D#4", e.target.files[0]),
+        },
+        {
+            soundPlay: () => soundPlay("F#4"),
+            isPlayed: isPercPlayed,
+            id: "Perc",
+            handleSoundChange: (e) => handleSoundChange("F#4", e.target.files[0]),
+        },
+        {
+            soundPlay: () => soundPlay("A4"),
+            isPlayed: isSnarePlayed,
+            id: "Snare",
+            handleSoundChange: (e) => handleSoundChange("A4", e.target.files[0]),
+        },
     ];
     return { buttonList };
 }
