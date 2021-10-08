@@ -34,6 +34,7 @@ const Wrapper = styled.div`
     align-items: center;
     & a{
         color: inherit;
+        margin-bottom: 4px;
     }
 `;
 const P = styled.p`
