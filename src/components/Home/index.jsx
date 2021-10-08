@@ -7,6 +7,10 @@ export default function Home(){
     return (
         <Wrapper>
             <P>Click on 🎵 to change sample</P>
+            <P>(You can use a, z, e, r key)</P>
+            <a href="https://reverb.com/fr/software/samples-and-loops/reverb/3514-reverb-drum-machines-the-complete-collection" target="_blank">
+                Download lot of free sample
+            </a>
             <Grid>
                 {buttonList.map(({ soundPlay, isPlayed, id, handleSoundChange }, index) => {
                     return (
@@ -28,6 +32,9 @@ const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    & a{
+        color: inherit;
+    }
 `;
 const P = styled.p`
     margin-bottom: 12px;

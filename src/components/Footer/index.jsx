@@ -3,7 +3,7 @@ import styled from "styled-components";
 export default function Header({isLight, handleToggleTheme}){
     return (
         <Wrapper>
-            <button onClick={handleToggleTheme}>Switch to {isLight ? "light" : "dark"} Theme</button>
+            <button onClick={handleToggleTheme}>Switch to {isLight ? "dark" : "light"} Theme</button>
         </Wrapper>
     );
 };
